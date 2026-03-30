@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StudyHub — Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { corePlugins: { preflight: false } }</script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════ NAVBAR ══ -->
+  <nav class="navbar dashboard-navbar" role="banner">
+    <a href="index.html" class="navbar-brand" aria-label="StudyHub home">
+      <div class="logo-wrap">
+        <img src="images/logo.png" alt="StudyHub logo" class="logo-img">
+      </div>
+      <div class="title-group">
+        <span class="navbar-title">StudyHub</span>
+        <span class="navbar-subtitle">Learning Management System</span>
+      </div>
+    </a>
+
+    <div class="navbar-actions dashboard-nav-actions" aria-label="Dashboard quick actions">
+      <nav class="dashboard-nav-links" aria-label="Primary">
+        <a href="semester.html?semester=1" class="dashboard-nav-link">My Courses</a>
+        <a href="#overall-gpa" class="dashboard-nav-link">Analytics</a>
+        <a href="#main-content" class="dashboard-nav-link">Workspace</a>
+      </nav>
+
+      <form class="dashboard-nav-search" role="search" aria-label="Search dashboard">
+        <label for="dashboard-search" class="sr-only">Search in dashboard</label>
+        <span class="dashboard-nav-search-icon" aria-hidden="true">&#128269;</span>
+        <input
+          id="dashboard-search"
+          type="search"
+          name="dashboard-search"
+          placeholder="Search subjects, notes, and lectures"
+          autocomplete="off"
+        >
+      </form>
+
+      <button type="button" class="dashboard-nav-icon-btn" aria-label="Notifications">
+        <span aria-hidden="true">&#128276;</span>
+        <span class="dashboard-nav-dot" aria-hidden="true"></span>
+      </button>
+
+      <button type="button" class="btn btn-primary btn-sm">+ New Subject</button>
+    </div>
+
+  </nav>
+
+  <!-- ═══════════════════════════════════════ APP SHELL ══ -->
+  <div class="app-shell">
+
+    <!-- ── Sidebar ──────────────────────────────────────── -->
+    <aside class="sidebar" aria-label="Semester navigation">
+      <p class="sidebar-label">Semesters</p>
+      <p class="sidebar-caption">Plan your progress across all 8 terms</p>
+      <nav id="semester-list" aria-label="Semester list">
+        <ul role="list">
+          <li><a href="semester.html?semester=1">Semester 1</a></li>
+          <li><a href="semester.html?semester=2">Semester 2</a></li>
+          <li><a href="semester.html?semester=3">Semester 3</a></li>
+          <li><a href="semester.html?semester=4">Semester 4</a></li>
+          <li><a href="semester.html?semester=5">Semester 5</a></li>
+          <li><a href="semester.html?semester=6">Semester 6</a></li>
+          <li><a href="semester.html?semester=7">Semester 7</a></li>
+          <li><a href="semester.html?semester=8">Semester 8</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- ── Main content ─────────────────────────────────── -->
+    <main class="page-content" id="main-content" aria-label="Dashboard content">
+
+      <!-- Welcome banner -->
+      <div class="welcome-banner" role="region" aria-label="StudyHub main section">
+        <div class="welcome-content">
+          <p class="welcome-kicker">StudyHub Dashboard</p>
+          <h1 class="welcome-title">Your Academic Command Center</h1>
+          <p class="welcome-copy">Track your semesters, monitor GPA, and manage every subject in one focused workspace.</p>
+          <div class="welcome-meta-row">
+            <div class="welcome-user-chip" aria-label="Active profile">
+              <span class="welcome-user-label">Student</span>
+              <p id="welcome-name">Umar Shafiq Abbasi</p>
+            </div>
+            <a class="welcome-cta" href="#overall-gpa">View Overall GPA</a>
+          </div>
+        </div>
+        <div class="welcome-photo-wrap" aria-hidden="true">
+          <img
+            src="images/my%20photo.jpg"
+            alt=""
+            class="welcome-photo"
+            onerror="this.onerror=null;this.src='images/logo.png';"
+          >
+        </div>
+      </div>
+
+      <!-- Stats widgets -->
+        <!-- Personal Information -->
+        <section class="profile-card card" aria-label="Personal Information">
+          <div class="card-header">
+            <h2 class="card-title">👤 Personal Information</h2>
+            <div class="row" style="justify-content:flex-end;">
+              <span class="badge badge-blue">Student Profile</span>
+              <button type="button" id="profile-edit-btn" class="btn btn-secondary btn-sm" aria-haspopup="dialog" aria-controls="profile-modal">Edit</button>
+            </div>
+          </div>
+          <div class="profile-info-grid">
+            <div class="profile-info-row">
+              <span class="profile-label">Name</span>
+              <span class="profile-value" id="profile-name">Umar Shafiq Abbasi</span>
+            </div>
+            <div class="profile-info-row">
+              <span class="profile-label">Father Name</span>
+              <span class="profile-value" id="profile-father-name">Shafiq ur Rehman Abbasi</span>
+            </div>
+            <div class="profile-info-row">
+              <span class="profile-label">Registration No.</span>
+              <span class="profile-value" id="profile-registration">25PWELE6505</span>
+            </div>
+            <div class="profile-info-row">
+              <span class="profile-label">Section</span>
+              <span class="profile-value" id="profile-section">C</span>
+            </div>
+            <div class="profile-info-row">
+              <span class="profile-label">Department</span>
+              <span class="profile-value" id="profile-department">Electrical Engineering (Communication)</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Stats widgets -->
+      <div class="widget-grid" role="list" aria-label="Quick stats">
+        <div class="widget-card" role="listitem">
+          <div class="widget-icon blue" aria-hidden="true">📚</div>
+          <div class="widget-value">8</div>
+          <div class="widget-label">Semesters</div>
+        </div>
+        <div class="widget-card" role="listitem">
+          <div class="widget-icon green" aria-hidden="true">🎓</div>
+          <div class="widget-value" id="dash-gpa">0.0</div>
+          <div class="widget-label">Overall GPA</div>
+        </div>
+        <div class="widget-card" role="listitem">
+          <div class="widget-icon amber" aria-hidden="true">📝</div>
+          <div class="widget-value">0</div>
+          <div class="widget-label">Assignments</div>
+        </div>
+        <div class="widget-card" role="listitem">
+          <div class="widget-icon red" aria-hidden="true">🎯</div>
+          <div class="widget-value">0%</div>
+          <div class="widget-label">Progress</div>
+        </div>
+      </div>
+
+      <!-- Overall GPA card -->
+      <section id="overall-gpa" class="card" aria-label="Overall GPA">
+        <div class="card-header">
+          <h2 class="card-title">Overall GPA</h2>
+          <span class="badge badge-blue">All Semesters</span>
+        </div>
+        <p>0.0</p>
+        <div class="alert alert-info" role="status" aria-live="polite">
+          <span class="alert-icon" aria-hidden="true">ℹ️</span>
+          <div>
+            <div class="alert-title">No grade data yet</div>
+            <div class="alert-body">Add marks in each subject to calculate your GPA automatically.</div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div><!-- /.app-shell -->
+
+  <div id="profile-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="profile-modal-title" style="display:none;">
+    <div class="modal-sheet">
+      <div class="modal-header">
+        <h3 id="profile-modal-title">Edit Personal Information</h3>
+        <button type="button" id="profile-modal-close" class="btn btn-ghost btn-sm" aria-label="Close profile editor">Close</button>
+      </div>
+      <div class="modal-body">
+        <form id="profile-form" class="subject-form">
+          <input class="subject-input" name="name" type="text" maxlength="120" placeholder="Name" required>
+          <input class="subject-input" name="father_name" type="text" maxlength="120" placeholder="Father Name">
+          <input class="subject-input" name="registration_no" type="text" maxlength="60" placeholder="Registration No.">
+          <input class="subject-input" name="section" type="text" maxlength="20" placeholder="Section">
+          <textarea class="subject-textarea" name="department" rows="3" maxlength="180" placeholder="Department"></textarea>
+          <div class="subject-form-actions" style="gap:8px;">
+            <button type="button" id="profile-modal-cancel" class="btn btn-secondary">Cancel</button>
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

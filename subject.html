@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StudyHub — Subject</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { corePlugins: { preflight: false } }</script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════ NAVBAR ══ -->
+  <nav class="navbar" role="banner">
+    <div class="navbar-brand">
+      <a href="javascript:history.back()" class="nav-back-link" aria-label="Back to semester">
+        <span class="nav-back-icon" aria-hidden="true">&#8592;</span>
+        <span class="nav-back-copy">
+          <span class="nav-back-label">Semester</span>
+          <span class="nav-back-meta">Return to subject list</span>
+        </span>
+      </a>
+      <div class="title-group" style="margin-left:10px">
+        <span class="navbar-title" id="subject-title">Subject</span>
+        <span class="navbar-subtitle">Subject Details</span>
+      </div>
+    </div>
+    <div class="navbar-actions">
+      <a href="semester.html" class="btn btn-secondary btn-sm">Semester</a>
+
+    </div>
+  </nav>
+
+  <!-- ════════════════════════════════════════ PAGE BODY ══ -->
+  <main class="single-main subject-main" id="main-content" aria-label="Subject content">
+
+    <section class="subject-hero" aria-label="Subject overview">
+      <div class="subject-hero-copy">
+        <p class="semester-kicker">Subject workspace</p>
+        <h1 id="subject-hero-title" class="subject-hero-title">Subject</h1>
+        <p id="subject-hero-note" class="subject-hero-note">View and manage all subject content below.</p>
+
+        <div class="subject-status-card alert alert-success" role="status" aria-live="polite">
+          <span class="alert-icon" aria-hidden="true">&#9989;</span>
+          <div>
+            <div class="alert-title">Subject loaded</div>
+            <div class="alert-body">View and manage all subject content below.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="subject-hero-stats" aria-label="Subject summary metrics">
+        <article class="semester-overview-card subject-overview-card">
+          <span class="overview-label">Resources</span>
+          <strong id="subject-resource-count" class="overview-value">0</strong>
+          <span class="overview-meta">Books, files, and links</span>
+        </article>
+        <article class="semester-overview-card subject-overview-card">
+          <span class="overview-label">Study Units</span>
+          <strong id="subject-unit-count" class="overview-value">0</strong>
+          <span class="overview-meta">Lectures, assignments, and quizzes</span>
+        </article>
+        <article class="semester-overview-card subject-overview-card">
+          <span class="overview-label">Final Marks</span>
+          <strong id="subject-final-score" class="overview-value">0</strong>
+          <span class="overview-meta">Current recorded score</span>
+        </article>
+      </div>
+    </section>
+
+    <div class="subject-layout">
+      <div class="subject-content-column">
+        <nav class="subject-tabs subject-tabs-panel" aria-label="Subject sections">
+          <a class="subject-tab is-active" href="#books-list">Books</a>
+          <a class="subject-tab" href="#lectures-list">Lectures</a>
+          <a class="subject-tab" href="#assignments-list">Assignments</a>
+          <a class="subject-tab" href="#quizzes-list">Quizzes</a>
+          <a class="subject-tab" href="#final-marks">Final Marks</a>
+        </nav>
+
+        <!-- ── Books ────────────────────────────────────────── -->
+        <section id="books-list" class="card subject-section-card" aria-label="Books and resources">
+          <div class="card-header semester-panel-header">
+            <div>
+              <p class="semester-section-eyebrow">Reference shelf</p>
+              <h2 class="card-title">&#128214; Books</h2>
+              <p class="section-note">Store your PDFs, documents, and links in one organized reference area.</p>
+            </div>
+            <div class="subject-section-actions">
+              <span class="badge badge-blue">0 items</span>
+              <div class="frame-controls">
+                <button id="books-settings" class="icon-btn" aria-haspopup="true" aria-expanded="false" aria-controls="books-menu" title="Books settings" aria-label="Books settings">&#8943;</button>
+                <div id="books-menu" class="dropdown" role="menu" aria-hidden="true">
+                  <button data-action="add" role="menuitem">&#10133; Add Resource</button>
+                  <button data-action="manage" role="menuitem">&#9999;&#65039; Manage Resources</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <ul role="list"></ul>
+        </section>
+
+    <!-- Manage Books Modal -->
+    <div id="books-modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="books-modal-title">
+      <div class="modal-sheet">
+        <header class="modal-header">
+          <h3 id="books-modal-title">Manage Books</h3>
+          <button id="books-modal-close" class="btn btn-ghost btn-icon" aria-label="Close books modal">&#10005;</button>
+        </header>
+        <div id="books-modal-body" class="modal-body" aria-live="polite"></div>
+      </div>
+    </div>
+
+        <!-- ── Lectures ─────────────────────────────────────── -->
+        <section id="lectures-list" class="card subject-section-card" aria-label="Lectures">
+          <div class="card-header semester-panel-header">
+            <div>
+              <p class="semester-section-eyebrow">Learning flow</p>
+              <h2 class="card-title">&#127891; Lectures</h2>
+              <p class="section-note">Track delivered topics and attach lecture-specific resources for revision.</p>
+            </div>
+            <div class="subject-section-actions">
+              <span class="badge badge-blue">0 items</span>
+              <div class="frame-controls">
+                <button id="lectures-settings" class="icon-btn" aria-haspopup="true" aria-expanded="false" aria-controls="lectures-menu" title="Lectures settings" aria-label="Lectures settings">&#8943;</button>
+                <div id="lectures-menu" class="dropdown" role="menu" aria-hidden="true">
+                  <button data-action="add" role="menuitem">&#10133; Add Lecture</button>
+                  <button data-action="manage" role="menuitem">&#9999;&#65039; Manage Lectures</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ul role="list"></ul>
+        </section>
+
+    <!-- Manage Lectures Modal -->
+    <div id="lectures-modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="lectures-modal-title">
+      <div class="modal-sheet">
+        <header class="modal-header">
+          <h3 id="lectures-modal-title">Manage Lectures</h3>
+          <button id="lectures-modal-close" class="btn btn-ghost btn-icon" aria-label="Close lectures modal">&#10005;</button>
+        </header>
+        <div id="lectures-modal-body" class="modal-body" aria-live="polite"></div>
+      </div>
+    </div>
+
+        <!-- ── Assignments ───────────────────────────────────── -->
+        <section id="assignments-list" class="card subject-section-card" aria-label="Assignments">
+          <div class="card-header semester-panel-header">
+            <div>
+              <p class="semester-section-eyebrow">Assessment plan</p>
+              <h2 class="card-title">&#128221; Assignments</h2>
+              <p class="section-note">Keep assignment tasks, instructions, and supporting files aligned for this subject.</p>
+            </div>
+            <div class="subject-section-actions">
+              <span class="badge badge-blue">0 items</span>
+              <div class="frame-controls">
+                <button id="assignments-settings" class="icon-btn" aria-haspopup="true" aria-expanded="false" aria-controls="assignments-menu" title="Assignments settings" aria-label="Assignments settings">&#8943;</button>
+                <div id="assignments-menu" class="dropdown" role="menu" aria-hidden="true">
+                  <button data-action="add" role="menuitem">&#10133; Add Assignment</button>
+                  <button data-action="manage" role="menuitem">&#9999;&#65039; Manage Assignments</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ul role="list"></ul>
+        </section>
+
+    <!-- Manage Assignments Modal -->
+    <div id="assignments-modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="assignments-modal-title">
+      <div class="modal-sheet">
+        <header class="modal-header">
+          <h3 id="assignments-modal-title">Manage Assignments</h3>
+          <button id="assignments-modal-close" class="btn btn-ghost btn-icon" aria-label="Close assignments modal">&#10005;</button>
+        </header>
+        <div id="assignments-modal-body" class="modal-body" aria-live="polite"></div>
+      </div>
+    </div>
+
+        <!-- ── Quizzes ───────────────────────────────────────── -->
+        <section id="quizzes-list" class="card subject-section-card" aria-label="Quizzes">
+          <div class="card-header semester-panel-header">
+            <div>
+              <p class="semester-section-eyebrow">Checkpoint review</p>
+              <h2 class="card-title">&#127919; Quizzes</h2>
+              <p class="section-note">Organize quizzes, practice files, and quick checks for continuous preparation.</p>
+            </div>
+            <div class="subject-section-actions">
+              <span class="badge badge-blue">0 items</span>
+              <div class="frame-controls">
+                <button id="quizzes-settings" class="icon-btn" aria-haspopup="true" aria-expanded="false" aria-controls="quizzes-menu" title="Quizzes settings" aria-label="Quizzes settings">&#8943;</button>
+                <div id="quizzes-menu" class="dropdown" role="menu" aria-hidden="true">
+                  <button data-action="add" role="menuitem">&#10133; Add Quiz</button>
+                  <button data-action="manage" role="menuitem">&#9999;&#65039; Manage Quizzes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ul role="list"></ul>
+        </section>
+
+    <!-- Manage Quizzes Modal -->
+    <div id="quizzes-modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="quizzes-modal-title">
+      <div class="modal-sheet">
+        <header class="modal-header">
+          <h3 id="quizzes-modal-title">Manage Quizzes</h3>
+          <button id="quizzes-modal-close" class="btn btn-ghost btn-icon" aria-label="Close quizzes modal">&#10005;</button>
+        </header>
+        <div id="quizzes-modal-body" class="modal-body" aria-live="polite"></div>
+      </div>
+    </div>
+
+        <!-- ── Final Marks ───────────────────────────────────── -->
+        <section id="final-marks" class="card subject-section-card subject-marks-card" aria-label="Final Marks">
+          <div class="card-header semester-panel-header">
+            <div>
+              <p class="semester-section-eyebrow">Result snapshot</p>
+              <h2 class="card-title">&#127942; Final Marks</h2>
+              <p class="section-note">Review the current marks breakdown and overall subject standing.</p>
+            </div>
+            <span class="badge badge-slate">Pending</span>
+          </div>
+
+          <div class="subject-marks-summary">
+            <p id="subject-marks-value" class="subject-marks-value">0 <span>/ 100</span></p>
+            <div class="subject-marks-progress">
+              <span>0</span>
+              <div class="subject-marks-track"><span id="subject-marks-fill" class="subject-marks-fill"></span></div>
+              <span>100</span>
+            </div>
+          </div>
+
+          <div class="table-wrapper subject-table-wrap">
+            <table class="table" aria-label="Marks breakdown">
+              <thead>
+                <tr>
+                  <th scope="col">Component</th>
+                  <th scope="col">Obtained</th>
+                  <th scope="col">Total</th>
+                  <th scope="col">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Assignments</td>
+                  <td>&#8212;</td>
+                  <td>20</td>
+                  <td><span class="badge badge-amber">Pending</span></td>
+                </tr>
+                <tr>
+                  <td>Quizzes</td>
+                  <td>&#8212;</td>
+                  <td>20</td>
+                  <td><span class="badge badge-amber">Pending</span></td>
+                </tr>
+                <tr>
+                  <td>Midterm</td>
+                  <td>&#8212;</td>
+                  <td>30</td>
+                  <td><span class="badge badge-amber">Pending</span></td>
+                </tr>
+                <tr>
+                  <td>Final Exam</td>
+                  <td>&#8212;</td>
+                  <td>30</td>
+                  <td><span class="badge badge-amber">Pending</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+
+      <aside class="subject-sidebar" aria-label="Subject insights">
+        <section class="card subject-insight-card" aria-label="Subject profile">
+          <div class="card-header semester-panel-header semester-panel-header-tight">
+            <div>
+              <p class="semester-section-eyebrow">Subject profile</p>
+              <h2 class="card-title">Course Data</h2>
+            </div>
+            <span id="subject-code-badge" class="badge badge-blue">Code</span>
+          </div>
+          <div class="semester-insight-list">
+            <div class="semester-insight-row">
+              <span class="semester-insight-label">Credit Hours</span>
+              <strong id="subject-credit-hours" class="semester-insight-value">0</strong>
+            </div>
+            <div class="semester-insight-row">
+              <span class="semester-insight-label">Contact Hours</span>
+              <strong id="subject-contact-hours" class="semester-insight-value">0</strong>
+            </div>
+            <div class="semester-insight-row">
+              <span class="semester-insight-label">Resource Files</span>
+              <strong id="subject-resource-files" class="semester-insight-value">0</strong>
+            </div>
+            <div class="semester-insight-row">
+              <span class="semester-insight-label">Web Links</span>
+              <strong id="subject-resource-links" class="semester-insight-value">0</strong>
+            </div>
+          </div>
+          <p id="subject-insight-summary" class="semester-load-summary">Subject metrics will appear here as content is added.</p>
+        </section>
+
+        <section class="card subject-insight-card" aria-label="Study distribution">
+          <div class="card-header semester-panel-header semester-panel-header-tight">
+            <div>
+              <p class="semester-section-eyebrow">Study distribution</p>
+              <h2 class="card-title">Progress Mix</h2>
+            </div>
+          </div>
+          <div class="subject-mini-metrics">
+            <div class="subject-mini-metric">
+              <span class="subject-mini-label">Lectures</span>
+              <strong id="subject-lectures-total" class="subject-mini-value">0</strong>
+            </div>
+            <div class="subject-mini-metric">
+              <span class="subject-mini-label">Assignments</span>
+              <strong id="subject-assignments-total" class="subject-mini-value">0</strong>
+            </div>
+            <div class="subject-mini-metric">
+              <span class="subject-mini-label">Quizzes</span>
+              <strong id="subject-quizzes-total" class="subject-mini-value">0</strong>
+            </div>
+          </div>
+          <p id="subject-progress-summary" class="semester-load-summary">Use this subject workspace to build a complete academic trail.</p>
+        </section>
+      </aside>
+    </div>
+
+  </main>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

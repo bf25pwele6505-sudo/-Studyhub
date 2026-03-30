@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StudyHub — Semester</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { corePlugins: { preflight: false } }</script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar" role="banner">
+    <div class="navbar-brand">
+      <a href="index.html" class="nav-back-link" aria-label="Back to dashboard">
+        <span class="nav-back-icon" aria-hidden="true">&#8592;</span>
+        <span class="nav-back-copy">
+          <span class="nav-back-label">Dashboard</span>
+          <span class="nav-back-meta">Return to LMS overview</span>
+        </span>
+      </a>
+      <div class="title-group" style="margin-left:10px">
+        <span class="navbar-title" id="semester-page-title">Semester</span>
+        <span class="navbar-subtitle">Subjects &amp; GPA</span>
+      </div>
+    </div>
+
+  </nav>
+
+  <main class="single-main semester-main" id="main-content">
+    <section class="semester-hero" aria-label="Semester overview">
+      <div class="semester-hero-copy">
+        <p class="semester-kicker">Academic overview</p>
+        <h1 id="semester-overview-title" class="semester-hero-title">Semester</h1>
+        <p id="semester-overview-note" class="semester-hero-note">Track subjects, workload, and performance from one place.</p>
+      </div>
+      <div class="semester-overview-grid" aria-label="Semester metrics">
+        <article class="semester-overview-card">
+          <span class="overview-label">Subjects</span>
+          <strong id="semester-subject-count" class="overview-value">0</strong>
+          <span class="overview-meta">Active courses in this term</span>
+        </article>
+        <article class="semester-overview-card">
+          <span class="overview-label">Credit Hours</span>
+          <strong id="semester-credit-hours" class="overview-value">0</strong>
+          <span class="overview-meta">Combined registered workload</span>
+        </article>
+        <article class="semester-overview-card">
+          <span class="overview-label">Study Items</span>
+          <strong id="semester-study-items" class="overview-value">0</strong>
+          <span class="overview-meta">Lectures, assignments, and quizzes</span>
+        </article>
+      </div>
+    </section>
+
+    <div class="semester-layout">
+      <div class="content-column">
+
+        <!-- Subjects section -->
+        <section id="subject-list" class="semester-panel" aria-label="Subjects">
+          <div class="card semester-subjects-card">
+            <div class="card-header semester-panel-header">
+              <div>
+                <p class="semester-section-eyebrow">Course directory</p>
+                <h2 class="card-title">Subjects</h2>
+                <p class="section-note">Review each course, open its workspace, or manage the semester catalog from the action menu.</p>
+              </div>
+              <div class="frame-controls">
+                <button id="subjects-settings" class="icon-btn" aria-haspopup="true" aria-expanded="false" aria-controls="subjects-menu" title="Subject settings" aria-label="Subject settings">&#8943;</button>
+                <div id="subjects-menu" class="dropdown" role="menu" aria-hidden="true">
+                  <button data-action="add" role="menuitem">&#10133; Add Subject</button>
+                  <button data-action="manage" role="menuitem">&#9999;&#65039; Manage Subjects</button>
+                </div>
+              </div>
+            </div>
+
+            <div id="subjects-grid" class="subjects-grid semester-subjects-grid" role="list"></div>
+          </div>
+        </section>
+
+      <!-- Manage Subjects Modal -->
+      <div id="subjects-modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modal-title">
+        <div class="modal-sheet">
+          <header class="modal-header">
+            <h3 id="modal-title">Manage Subjects</h3>
+            <button id="modal-close" class="btn btn-ghost btn-icon" aria-label="Close modal">&#10005;</button>
+          </header>
+          <div id="modal-body" class="modal-body" aria-live="polite"></div>
+        </div>
+      </div>
+
+      </div>
+
+      <aside class="semester-sidebar" aria-label="Semester insights">
+        <section id="semester-gpa" class="card semester-gpa-card" aria-label="Semester GPA">
+          <div class="card-header semester-panel-header">
+            <div>
+              <p class="semester-section-eyebrow">Performance</p>
+              <h2 class="card-title">Semester GPA</h2>
+            </div>
+            <span id="semester-gpa-badge" class="badge badge-amber">In Progress</span>
+          </div>
+          <p id="semester-gpa-value" class="semester-gpa-value">0.0</p>
+          <div class="semester-gpa-scale">
+            <span>0.0</span>
+            <div class="semester-gpa-track"><span id="semester-gpa-fill" class="semester-gpa-fill"></span></div>
+            <span>4.0</span>
+          </div>
+          <div id="semester-gpa-alert" class="alert alert-warning" role="status">
+            <span class="alert-icon" aria-hidden="true">&#9888;&#65039;</span>
+            <div>
+              <div class="alert-title">GPA not calculated</div>
+              <div class="alert-body">Add subject marks to see your semester GPA here.</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="card semester-insights-card" aria-label="Semester workload insights">
+          <div class="card-header semester-panel-header semester-panel-header-tight">
+            <div>
+              <p class="semester-section-eyebrow">Workload snapshot</p>
+              <h2 class="card-title">Academic Load</h2>
+            </div>
+          </div>
+          <div class="semester-insight-list">
+            <div class="semester-insight-row">
+              <span class="semester-insight-label">Contact Hours</span>
+              <strong id="semester-contact-hours" class="semester-insight-value">0</strong>
+            </div>
+            <div class="semester-insight-row">
+              <span class="semester-insight-label">Lectures</span>
+              <strong id="semester-lecture-count" class="semester-insight-value">0</strong>
+            </div>
+            <div class="semester-insight-row">
+              <span class="semester-insight-label">Assignments</span>
+              <strong id="semester-assignment-count" class="semester-insight-value">0</strong>
+            </div>
+            <div class="semester-insight-row">
+              <span class="semester-insight-label">Quizzes</span>
+              <strong id="semester-quiz-count" class="semester-insight-value">0</strong>
+            </div>
+          </div>
+          <p id="semester-load-summary" class="semester-load-summary">No course workload has been added yet.</p>
+        </section>
+      </aside>
+    </div>
+  </main>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
+
+

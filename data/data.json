@@ -1,0 +1,85 @@
+{
+  "semesters": [
+    {
+      "id": 1,
+      "name": "Semester 1",
+      "subjects": [
+        {
+          "code": "MTH101",
+          "name": "Calculus",
+          "credit_hours": 3,
+          "contact_hours": 4,
+          "final_marks": 0,
+          "lectures": [
+            {
+              "title": "Limits",
+              "resources": []
+            },
+            {
+              "title": "Derivatives",
+              "resources": []
+            }
+          ],
+          "assignments": [
+            {
+              "title": "Assignment 1",
+              "resources": []
+            },
+            {
+              "title": "Assignment 2",
+              "resources": []
+            }
+          ],
+          "quizzes": [
+            {
+              "title": "Quiz 1",
+              "resources": []
+            }
+          ]
+        },
+        {
+          "code": "PHY101",
+          "name": "Physics",
+          "credit_hours": 3,
+          "contact_hours": 3,
+          "final_marks": 0,
+          "lectures": [
+            {
+              "title": "Kinematics",
+              "resources": []
+            },
+            {
+              "title": "Dynamics",
+              "resources": []
+            }
+          ],
+          "assignments": [
+            {
+              "title": "Assignment 1",
+              "resources": []
+            }
+          ],
+          "quizzes": [
+            {
+              "title": "Quiz 1",
+              "resources": []
+            },
+            {
+              "title": "Quiz 2",
+              "resources": []
+            }
+          ]
+        }
+      ],
+      "semester_gpa": 0
+    }
+  ],
+  "overall_gpa": 0,
+  "profile": {
+    "name": "Umar Shafiq Abbasi",
+    "father_name": "Shafiq ur Rehman Abbasi",
+    "registration_no": "25PWELE6505",
+    "section": "C",
+    "department": "Electrical Engineering (Communication)"
+  }
+}
